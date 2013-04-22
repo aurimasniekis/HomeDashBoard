@@ -1,4 +1,6 @@
 HomeDashBoard::Application.routes.draw do
+  resources :payees
+
   resources :payment_categories
 
   root to: 'application#index'

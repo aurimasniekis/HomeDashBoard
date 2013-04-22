@@ -1,6 +1,6 @@
 <%- model_class = PaymentCategory -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %> <%= "(#{PaymentCategory.find(params[:level]).title})" if params[:level] %></h1>
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
 <ul class="breadcrumb">
   <li><%= link_to "Root", payment_categories_path %><span class="divider">/</span></li>
@@ -25,10 +25,9 @@
       <tr>
         <td><%= link_to payment_category.id, payment_category.children.size > 0 ? {:action => 'index', :level => payment_category.id} : payment_category_path(payment_category) %></td>
         <td><%= link_to payment_category.title, payment_category.children.size > 0 ? {:action => 'index', :level => payment_category.id} : payment_category_path(payment_category) %></td>
-        <td><%=l payment_category.created_at %></td>
+        <td><%=t payment_category.created_at %></td>
         <td>
-          <%= link_to t('.new_sub', :default => t("helpers.links.new_sub")),
-                      new_payment_category_path(:level => payment_category.id), :class => 'btn btn-mini btn-success' %>
+
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_payment_category_path(payment_category), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
@@ -36,6 +35,8 @@
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>
+          <%= link_to t('.new_sub', :default => t("helpers.links.new_sub")),
+                      new_payment_category_path(:level => payment_category.id), :class => 'btn btn-mini btn-success' %>
         </td>
       </tr>
     <% end %>
