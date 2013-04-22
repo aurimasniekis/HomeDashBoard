@@ -1,0 +1,26 @@
+<%= form_for @payment_category, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :payment_category_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :payment_category_id, PaymentCategory.get_all.collect {|p| [ p.title, p.id ] }, include_blank: 'Select', selected: params[:level] %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :description, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                payment_categories_path, :class => 'btn' %>
+  </div>
+<% end %>
